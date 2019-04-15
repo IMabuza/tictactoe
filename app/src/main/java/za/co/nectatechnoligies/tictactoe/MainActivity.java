@@ -15,38 +15,45 @@ public class MainActivity extends AppCompatActivity {
 
     int[][] winnnngPos = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
 
+    boolean gameActive = true;
+
     public void playerTap (View view ){
 
         ImageView tictac = (ImageView) view;
 
         int tappedTicTac = Integer.parseInt(tictac.getTag().toString());
 
-        gameState[tappedTicTac] = activePlayer;
+        if(gameState[tappedTicTac] == 2 && gameActive) {
 
-        if(activePlayer == 0) {
+            gameState[tappedTicTac] = activePlayer;
 
-            tictac.setImageResource(R.drawable.o);
-            activePlayer = 1;
+            if (activePlayer == 0) {
 
-        }else {
+                tictac.setImageResource(R.drawable.o);
+                activePlayer = 1;
 
-            tictac.setImageResource(R.drawable.x);
-            activePlayer = 0;
-        }
+            } else {
 
-        for (int[] winningPoss : winnnngPos){
+                tictac.setImageResource(R.drawable.x);
+                activePlayer = 0;
+            }
 
-            if(gameState[winningPoss[0]] == gameState[winningPoss[1]] && gameState[winningPoss[1]] == gameState[winningPoss[2]] && gameState[winningPoss[0]] != 2){
+            for (int[] winningPoss : winnnngPos) {
+
+                if (gameState[winningPoss[0]] == gameState[winningPoss[1]] && gameState[winningPoss[1]] == gameState[winningPoss[2]] && gameState[winningPoss[0]] != 2) {
 //                someone has won
 
-                String winner = "";
+                    gameActive = false;
 
-                if(activePlayer == 1){
+                    String winner = "";
 
-                    winner = "X";
+                    if (activePlayer == 1) {
 
-                }else{
-                    winner = "0";
+                        winner = "X";
+
+                    } else {
+                        winner = "0";
+                    }
                 }
             }
         }
