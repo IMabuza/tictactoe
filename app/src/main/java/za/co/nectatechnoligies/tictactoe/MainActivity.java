@@ -3,7 +3,10 @@ package za.co.nectatechnoligies.tictactoe;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,9 +57,50 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         winner = "0";
                     }
+
+                    Button playAgainButton = (Button) findViewById(R.id.playAgain);
+
+                    TextView winnerText = (TextView) findViewById(R.id.winnterTextView);
+
+                    winnerText.setText(winner + "has won!!");
+
+                    playAgainButton.setVisibility(View.VISIBLE);
+
+                    winnerText.setVisibility(View.VISIBLE);
                 }
             }
         }
+
+    }
+
+    public void playAgain(View view){
+
+        Button playAgainButton = (Button) findViewById(R.id.playAgain);
+
+        TextView winnerText = (TextView) findViewById(R.id.winnterTextView);
+
+        playAgainButton.setVisibility(View.INVISIBLE);
+
+        winnerText.setVisibility(View.INVISIBLE);
+
+        GridLayout gridLayout = (GridLayout) findViewById(R.id.gridLayout);
+
+
+        for(int i=0; i<gridLayout.getChildCount(); i++ ){
+
+            ImageView tictac = (ImageView) gridLayout.getChildAt(i);
+
+            tictac.setImageDrawable(null);
+        }
+
+        activePlayer = 0;
+
+        for(int i=0; i<gameState.length; i++){
+            gameState[i] = 2;
+        }
+
+        gameActive = true;
+
 
     }
 
