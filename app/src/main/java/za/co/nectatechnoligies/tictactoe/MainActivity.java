@@ -44,25 +44,24 @@ public class MainActivity extends AppCompatActivity {
             for (int[] winningPoss : winnnngPos) {
 
                 if (gameState[winningPoss[0]] == gameState[winningPoss[1]] && gameState[winningPoss[1]] == gameState[winningPoss[2]] && gameState[winningPoss[0]] != 2) {
-//                someone has won
 
                     gameActive = false;
 
-                    String winner = "";
+                    String winner;
 
                     if (activePlayer == 1) {
 
-                        winner = "X";
+                        winner = "0";
 
                     } else {
-                        winner = "0";
+                        winner = "X";
                     }
 
-                    Button playAgainButton = (Button) findViewById(R.id.playAgain);
+                    Button playAgainButton = findViewById(R.id.playAgainButton);
 
-                    TextView winnerText = (TextView) findViewById(R.id.winnterTextView);
+                    TextView winnerText = findViewById(R.id.winnterTextView);
 
-                    winnerText.setText(winner + "has won!!");
+                    winnerText.setText(winner + " has won!!");
 
                     playAgainButton.setVisibility(View.VISIBLE);
 
@@ -73,17 +72,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void playAgain(View view){
+    public void playAgainNow(View view) {
 
-        Button playAgainButton = (Button) findViewById(R.id.playAgain);
+        Button playAgainButton = findViewById(R.id.playAgainButton);
 
-        TextView winnerText = (TextView) findViewById(R.id.winnterTextView);
+        TextView winnerText = findViewById(R.id.winnterTextView);
 
         playAgainButton.setVisibility(View.INVISIBLE);
 
         winnerText.setVisibility(View.INVISIBLE);
 
-        GridLayout gridLayout = (GridLayout) findViewById(R.id.gridLayout);
+        GridLayout gridLayout = findViewById(R.id.gridLayout);
 
 
         for(int i=0; i<gridLayout.getChildCount(); i++ ){
@@ -93,20 +92,24 @@ public class MainActivity extends AppCompatActivity {
             tictac.setImageDrawable(null);
         }
 
-        activePlayer = 0;
-
         for(int i=0; i<gameState.length; i++){
             gameState[i] = 2;
         }
 
+        activePlayer = 0;
+
         gameActive = true;
 
 
+
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+
 }
